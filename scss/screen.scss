@@ -1,0 +1,11 @@
+/**
+ * File:        screen.scss
+ * Description: Stylesheet for 'Make it so' base theme
+ * Author:      Sebastiaan Bonardt - @_sebbon
+ */
+
+$old-ie: false;
+
+@import "base/_base.scss";
+@import "base/_normalize.scss";
+@import "modules/_defaults.scss";

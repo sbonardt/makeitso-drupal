@@ -1,0 +1,12 @@
+/**
+ * File:        old_ie.scss
+ * Description: Stylesheet for IE browsers < IE9 - 'Make it so' base theme
+ * Author:      Sebastiaan Bonardt - @_sebbon
+ */
+ 
+$old-ie: true;
+$fix-mqs: 64; 
+ 
+@import "base/_base.scss";
+@import "base/_normalize.scss";
+@import "modules/_defaults.scss";

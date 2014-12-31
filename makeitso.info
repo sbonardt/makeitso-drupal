@@ -1,0 +1,11 @@
+name = Make it so
+description = Base theme for Drupal, built by Sebastiaan Bonardt - @_sebbon
+core = 7.x
+engine = phptemplate
+
+; Stylesheets ==============================================================
+stylesheets[all][] = css/screen.css
+
+; Javascript ===============================================================
+scripts[] = js/custom.js
+

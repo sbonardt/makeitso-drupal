@@ -1,0 +1,192 @@
+/**
+ * File:        _base.scss
+ * Description: This base file contains all project VARIABLES and (custom) mixins 
+ * Author:      Sebastiaan Bonardt - @_sebbon
+ */
+
+$base-font-family: "Droid Sans", Arial, Sans-serif;
+
+/**
+ * Theme colors
+ */
+$grey:#ccc;
+$white:#fff;
+$black:#333;
+$error: #e32118;
+
+/**
+ * Media Query Breakpoints
+ */
+$break-xsmall: (400/16); //400px is 400/16 is 25 em
+$break-small: (481/16); //480px is 30 em
+$break-medium:(600/16); //768px is 37.5 em
+$break-large:(768/16); //768px is 48 em
+$break-xlarge:(1024/16); //1024px is 64em
+$break-wide: (1200/16); //1200px is 75 em
+
+$site-max-width:64em;
+
+// fixed media query size for Old IE scss, defaults to false
+$old-ie: false !default;
+
+@mixin respond-to($media) {
+    @if $media == midmobile {
+      // is fix-mqs gezet..... &
+        @if $old-ie {
+            // en groter of gelijk aan breekpunt, dan gewone css output. dit is voor oude browsers (oldie)
+            @if $fix-mqs >= $break-xsmall { 
+                @content
+            }
+        }
+        // fix-mqs is niet gezet en false: output gewone media query
+        @else {
+            @media only screen and (min-width: $break-xsmall + 'em') { 
+               @content;
+            }
+        }      
+    } 
+    @if $media == handhelds {
+      // is fix-mqs gezet..... &
+        @if $old-ie {
+            // en groter of gelijk aan breekpunt, dan gewone css output. dit is voor oude browsers (oldie)
+            @if $fix-mqs >= $break-small { 
+                @content
+            }
+        }
+        // fix-mqs is niet gezet en false: output gewone media query
+        @else {
+            @media only screen and (min-width: $break-small + 'em') { 
+               @content;
+            }
+        }      
+    } 
+    @if $media == tablets {
+      // is fix-mqs gezet..... &
+        @if $old-ie {
+            // en groter of gelijk aan breekpunt, dan gewone css output. dit is voor oude browsers (oldie)
+            @if $fix-mqs >= $break-medium { 
+                @content
+            }
+        }
+        // fix-mqs is niet gezet en false: output gewone media query
+        @else {
+            @media only screen and (min-width: $break-medium + 'em') { 
+               @content;
+            }
+        }      
+    } 
+    @if $media == medium-screens {
+      // is fix-mqs gezet..... &
+        @if $old-ie {
+            // en groter of gelijk aan breekpunt, dan gewone css output. dit is voor oude browsers (oldie)
+            @if $fix-mqs >= $break-large { 
+                @content
+            }
+        }
+        // fix-mqs is niet gezet en false: output gewone media query
+        @else {
+            @media only screen and (min-width: $break-large + 'em') { 
+               @content;
+            }
+        }      
+    }  
+    @if $media == large-screens {
+      // is fix-mqs gezet..... &
+        @if $old-ie {
+            // en groter of gelijk aan breekpunt, dan gewone css output. dit is voor oude browsers (oldie)
+            @if $fix-mqs >= $break-xlarge { 
+                @content
+            }
+        }
+        // fix-mqs is niet gezet en false: output gewone media query
+        @else {
+            @media only screen and (min-width: $break-xlarge + 'em') { 
+               @content;
+            }
+        }      
+    }  
+    @if $media == wide-screens {
+      // is fix-mqs gezet..... &
+        @if $old-ie {
+            // en groter of gelijk aan breekpunt, dan gewone css output. dit is voor oude browsers (oldie)
+            @if $fix-mqs >= $break-wide { 
+                @content
+            }
+        }
+        // fix-mqs is niet gezet en false: output gewone media query
+        @else {
+            @media only screen and (min-width: $break-wide + 'em') { 
+               @content;
+            }
+        }      
+    }  
+}
+
+$old-ie: false !default;
+// mixin om dingen is sass sheets toe te voegen die in de ie stylesheet komen
+// aanroepen met @include old-ie {}
+@mixin old-ie {
+    // Only use this content if we're dealing with old IE
+    @if $old-ie {
+        @content;
+    }
+}
+
+// rem and px mixin
+@mixin font-size($size: 1, $line: $size * 1.5){
+  @if $old-ie {
+    font-size     : ($size * 16) + px;
+    line-height   : ($line * 16) + px;
+  }
+  @else {
+    font-size     : $size + rem;
+    line-height   : $line + rem;
+  }
+}
+
+// rem and px mixin
+@mixin header-font-size($size: 1, $line: $size * 1.2){
+  @if $old-ie {
+    font-size     : ($size * 16) + px;
+    line-height   : ($line * 16) + px;
+  }
+  @else {
+    font-size     : $size + rem;
+    line-height   : $line + rem;
+  }
+}
+
+@function remToPx($number){
+  @if $old-ie {
+    $number: $number * 16;
+    @return #{$number}px;
+  }
+  @else {
+    @return #{$number}rem;
+  }
+}
+
+@mixin linear-gradient($fromColor, $toColor) {
+  background-color: $toColor; /* Fallback Color */
+  background-image: -webkit-gradient(linear, left, right, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(left, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(left, $fromColor, $toColor); /* FF3.6 */
+  background-image:     -ms-linear-gradient(left, $fromColor, $toColor); /* IE10 */
+  background-image:      -o-linear-gradient(left, $fromColor, $toColor); /* Opera 11.10+ */
+  background-image:         linear-gradient(left, $fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+//set one background image for both retina, normal and IE screens without issues.
+// use as: @include background-image(spritename, 0  0, 500px 1500px);
+// save images sprite twice the size, set the $size to half e.g. sprite img dimensions: 1000 x 1000, size 500 x 500
+// for retina able browsers background-size values are added
+@mixin background-retina-image($name, $pos, $size, $background-color){
+    @if $old-ie == false { 
+        background: url(../img/#{$name}.png) $pos  no-repeat $background-color;
+        background-size: $size;
+    }        
+    @if $old-ie {
+        background: url(../img/#{$name}-oldie.png) $pos  no-repeat $background-color;
+    }
+}
