@@ -33,7 +33,7 @@ Work in progress! Not ready for usage yet!
 	              |+++++.,||+|++++=+++++++|+|||||iitt||i||ii||||||itXt|
 	              t||+++,.=i+|+||+++++++++++++|i|ittiiii|iiitttttXVXRX|
 	              :||+++++.+++++++++|++|++++++|||iii||+:,:.-+:+|iViVXV
-	              iii||+++=.,+=,=,==++++++++++|||itttt|itiittXRXXXitV'  -- make it so
+	              iii||+++=.,+=,=,==++++++++++|||itttt|itiittXRXXXitV'
 	             ;tttii||++,.,,,.,,,,,=++++++++++|iittti|iiiiVXXXXXXV
 	            tVtttiii||++++=,,.  . ,,,=+++++++|itiiiiiii||||itttVt
 	           tVVttiiiii||||++++==,. ..,.,+++=++iiiiiitttttVVXXRRXXV
