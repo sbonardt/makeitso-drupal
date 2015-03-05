@@ -1,6 +1,6 @@
 <?php
 /**
- * html.tpl.php override for HTML% and to tidy things up
+ * html.tpl.php override for HTML5 and to tidy things up
  */
 ?>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
     	<?php print $head; ?>
     	<?php print $styles; ?> 
         <!--[if lte IE 8]>
-        <script type="text/javascript" src="http://nts.sebastiaan.twokings.eu/sites/all/themes/nts/js/html5shiv.js"></script>
+        <script type="text/javascript" src="/sites/all/themes/makeitso/js/html5shiv.js"></script>
         <![endif]-->
     </head>
 
