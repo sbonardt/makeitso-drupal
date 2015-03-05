@@ -87,7 +87,7 @@
  * @ingroup themeable
  */ 
 
-<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?><?php if($teaser){print "node-teaser"} else {print "node-full"};?>"<?php print $attributes; ?>>
+<article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?><?php if($teaser){print "node-teaser"} else {print "node-full"};?>"><?php print $attributes; ?>>
     <?php
 // We hide the comments and links now so that we can render them later.
     hide($content['links']);
