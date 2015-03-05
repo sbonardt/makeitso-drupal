@@ -69,7 +69,7 @@ function makeitso_js_alter(&$js) {
  * Override or insert variables into the page template.
  */
 function makeitso_preprocess_page(&$variables) {
-// page template suggestions base on node type: page--interview, page--cursus, etc.
+// page template suggestions base on node type: page--type--interview, page--type--cursus, etc.
     if (!empty($variables['node'])) {
         $variables['theme_hook_suggestions'][] = 'page__type__' . $variables['node']->type;
     }
@@ -81,14 +81,14 @@ function makeitso_preprocess_page(&$variables) {
         );
     unset($variables['tabs']['#secondary']);
 
-// template suggestions to target specific taxonomy voc. pages based on voc.id
+// template suggestions to target specific taxonomy voc. pages based on voc.id page--vocabulary--id
     if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
         $tid = arg(2);
         $vid = db_query("SELECT vid FROM {taxonomy_term_data} WHERE tid = :tid", array(':tid' => $tid))->fetchField();
         $variables['theme_hook_suggestions'][] = 'page__vocabulary__' . $vid;
     }   
 
-// put the search block form in a separate variable 'searchblock' for use in page.tpl
+// put the search block form in a separate variable '$searchblock' for use in page.tpl
     $customsearchblock = module_invoke('search','block_view','search'); 
     $customsearchrendered_block = render($customsearchblock);
     $variables['searchblock'] = $customsearchrendered_block;
@@ -100,6 +100,7 @@ function makeitso_preprocess_page(&$variables) {
  */
 function makeitso_preprocess_node(&$variables) {
 // add node-full class to node
+    dpm($variables);
     if ($variables['elements']['#view_mode'] == 'full') {
         $variables['classes_array'][] = 'node-full';
     }
