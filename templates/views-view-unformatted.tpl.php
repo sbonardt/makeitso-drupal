@@ -1,13 +1,16 @@
 <?php
 /**
- * views-view-unformatted.tpl override. Removes wrapping div per row. 
- * If class is user specified in views display row style 
- * prints out wrapping div
+ * views-view-unformatted.tpl override.
+ * 
+ *
+ * IMPORTANT THEMING INFORMATION!:
+ * views-view-unformatted.tpl override. Removes wrapping div per views result row. 
+ * If class is user specified in views display row style adds wrapping DIV with class to each row
+ * If not, there is no wrapping DIV generated, as opposed to default template
+ *
  *
  * @file
  * Default simple view template to display a list of rows.
- *
- * @ingroup views_templates
  *
  *<?php if (!empty($title)): ?>
  *<h3><?php print $title; ?></h3>
@@ -18,6 +21,7 @@
  *</div>
  *<?php endforeach; ?>
  *
+ * @ingroup views_templates
  */
 ?>
 <?php if (!empty($title)): ?>

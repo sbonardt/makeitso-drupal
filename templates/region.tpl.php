@@ -1,6 +1,9 @@
 <?php
 /**
  * region.tpl override
+ * 
+ *
+ * IMPORTANT THEMING INFORMATION!:
  * Strips unneeded html containers/wrappers
  * See region.tpl.php on api.drupal.org for original
  * @file

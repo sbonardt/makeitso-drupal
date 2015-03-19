@@ -1,8 +1,13 @@
 <?php
 /**
  * views-view.tpl override.
- * Strips unneeded html containers/wrappers, adds class from view config in div if class is set
+ * 
+ *
+ * IMPORTANT THEMING INFORMATION!:
+ * Strips unneeded html containers/wrappers, adds class from view config in a DIV if class is set
+ * If class is not set no extra wrapping DIV is added; use block wrap class instead if views block
  * See views-view.tpl.php on api.drupal.org for original
+ *
  *
  * @file
  * Main view template.

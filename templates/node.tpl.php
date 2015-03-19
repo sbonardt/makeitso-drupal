@@ -1,13 +1,15 @@
 <?php
 /**
+ * default node.tpl override.
+ *
+ *
+ * IMPORTANT THEMING INFORMATION!:
  * default node.tpl for all nodes. HTML 5 <article> element. Adjust here, 
- * use teaser display in views in view displays.
  *
- * Displays teaser if requested. Teaser prints node title and summary field from 
- * body field or generated summary field from body text based on $max_length 
- * (defaults to 300). id $node prints all base fields
+ * Displays same tpl for teaser and full node. Extra classes for 'node-teaser' and
+ * 'node-full' views are added via template.php in function makeitso_preprocess_node()
  *
- * Assumes you have a field_image in node.tpl
+ * This file assumes you have a - multi value field - field_image in node.tpl
  * @file
  * Default theme implementation to display a node.
  *
@@ -92,11 +94,11 @@
     <?php
 // We hide the comments and links now so that we can render them later.
     hide($content['links']);
-    hide($content['field_tags']);
+    hide($content['comments']);
     hide($content['field_image']);
     ?>
     <?php print render($title_prefix); ?>
-    <h1 id="page-title" <?php print $title_attributes; ?>><?php print $title; ?></h1>
+    <h1 <?php if (!$teaser) { print 'id="page-title"'; }?> <?php print $title_attributes; ?>><?php print $title; ?></h1>
     <?php print render($title_suffix); ?>
 
     <?php if ($display_submitted): ?>
@@ -117,13 +119,13 @@
     else {
         $imgcount = 0;  
     }
+
 // if we're on the tease, print the firstimg in the teaser
     if ($teaser && $firstimg) {
         $image_alt = $node->field_image['und'][0]['alt'];
         $image_description = $node->field_image['und'][0]['title'];
         print '<img class="" src="' . image_style_url('large', $firstimg['uri']) . '" alt="' . $image_alt . '"  title="' . $image_description . '" />';
     }
-
     else {
     // if there's 1 image
         if ($imgcount == 1) {
@@ -138,6 +140,7 @@
     }
 
     print render($content);
+    
     ?>
 
     <?php

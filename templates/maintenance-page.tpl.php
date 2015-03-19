@@ -1,6 +1,10 @@
 <?php
 /**
  * maintentenance-page.tpl.php
+ * 
+ *
+ * IMPORTANT THEMING INFORMATION!:
+ * Nothing special yet. Just a default page setup
  */
 ?>
 <!DOCTYPE html>

@@ -1,6 +1,9 @@
 <?php
 /**
- * Block.tpl override
+ * block.tpl override
+ * 
+ *
+ * IMPORTANT THEMING INFORMATION!:
  * Strips unneeded html containers/wrappers, adds class(es) from block_class module: https://www.drupal.org/project/block_class
  * See block.tpl.php on api.drupal.org for original
  * @file

@@ -1,6 +1,16 @@
 <?php
 /**
- * page.tpl override with HTML 5 and ARIA in mind
+ * page.tpl override.
+ *
+ * 
+ * IMPORTANT THEMING INFORMATION!:
+ * page.tpl HTML 5 and ARIA in mind and in combination with node.tpl
+ * Generic setup with all Drupal page elements in logic and most common order.
+ * Adds an ASIDE region from makeitso.info
+ * Uses a generic 'inner-wrap' classed DIV for all items that are direct siblings
+ * of body instead of a main wrapping DIV wrapping all these items for esthetic
+ * front-end code purposes.... brrraughh.... grey poupon....
+ *
  *
  * @file
  * Default theme implementation to display a single Drupal page.
@@ -57,11 +67,13 @@
  * comment/reply/12345).
  *
  * Regions:
+ * See makeitso.info for the new regions used in this theme.
  * - $page['help']: Dynamic help text, mostly for admin pages.
  * - $page['highlighted']: Items for the highlighted content region.
  * - $page['content']: The main content of the current page.
  * - $page['sidebar_first']: Items for the first sidebar.
  * - $page['sidebar_second']: Items for the second sidebar.
+ * - $page['aside']: Items for the aside.
  * - $page['header']: Items for the header region.
  * - $page['footer']: Items for the footer region.
  *
@@ -75,38 +87,41 @@
 ?>
 
 <header role="banner">
-    <a class="skipcontent" href="#content">Ga naar de inhoud</a>
-    <a class="logo" href="<?php print $front_page ?>"><img src="<?php print $logo; ?>" alt ="<?php print $site_name; ?>" /><span><?php print $site_name; ?></span></a>
+    <div class="inner-wrap">
+        <a class="skipcontent" href="#content">Ga naar de inhoud</a>
+        <a class="logo" href="<?php print $front_page ?>"><img src="<?php print $logo; ?>" alt ="<?php print $site_name; ?>" /><span><?php print $site_name; ?></span></a>
 
-    <?php if ($page['header']): ?>
-        <?php print render($page['header']); ?>
-    <?php endif; ?>
+        <?php 
+            // print $searchblock from template.php    
+            print '<div class="search">' . $searchblock . '</div>'; 
+        ?>
 
-    <?php 
-        // print $searchblock from template.php    
-        print '<div class="search">' . $searchblock . '</div>'; 
-    ?>
+        <nav role="navigation">
+            <?php if ($main_menu): ?>
+            <?php
+            print theme('links__menu_main_menu', 
+            array(
+                'links' => $main_menu, 
+                'attributes' => array(  'class' => array('menu main-menu'))
+                )); 
+            ?>
+            <?php endif; ?> 
+        </nav>
 
-    <?php if ($secondary_menu): ?>
-    <?php 
-        print theme('links__system_secondary_menu', 
-        array(
-            'links' => $secondary_menu, 
-            'attributes' => array(  'class' => array('menu secondary-menu'))
-            ));
-    ?>
-    <?php endif; ?> 
-    <nav role="navigation">
-        <?php if ($main_menu): ?>
-        <?php
-        print theme('links__menu_main_menu', 
-        array(
-            'links' => $main_menu, 
-            'attributes' => array(  'class' => array('menu main-menu'))
-            )); 
+        <?php if ($secondary_menu): ?>
+        <?php 
+            print theme('links__system_secondary_menu', 
+            array(
+                'links' => $secondary_menu, 
+                'attributes' => array(  'class' => array('menu secondary-menu'))
+                ));
         ?>
         <?php endif; ?> 
-    </nav>
+
+        <?php if ($page['header']): ?>
+            <?php print render($page['header']); ?>
+        <?php endif; ?>
+    </div>
 </header>
 
 <main role="main">  
@@ -122,7 +137,7 @@
         </div>
         <?php endif; ?>
 
-        <a id="content" name="content" tabindex="0"></a>
+        <a id="content" tabindex="0"></a>
         <div class="main-content">
         <?php if (!isset($node)): ?> 
             <?php if ($title): ?>

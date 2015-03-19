@@ -1,5 +1,5 @@
 name = Make it so
-description = Base theme for Drupal, built by Sebastiaan Bonardt - @_sebbon
+description = HTML5 responsive web design base setup theme for Drupal 7, built by Sebastiaan Bonardt - @_sebbon
 core = 7.x
 engine = phptemplate
 
@@ -9,3 +9,16 @@ stylesheets[all][] = css/screen.css
 ; Javascript ===============================================================
 scripts[] = js/custom.js
 
+regions[header] = Header
+regions[highlighted] = Highlighted
+regions[content_top] = Content Top
+regions[content] = Content
+regions[content_column_left] = Inhoud Kolom links
+regions[content_column_right] = Inhoud kolom rechts
+regions[content_bottom] = Content lower
+
+regions[aside] = Main aside
+regions[aside_second] = Second aside
+
+regions[footer] = Footer
+regions[closure] = Closure
