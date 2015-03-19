@@ -1,8 +1,8 @@
 makeitso
 ========
 
-Make it so - Drupal 7 startup theme.  
-Work in progress! Not ready for usage yet!  
+Make it so - Drupal 7 startup theme. Use preferably together with https://github.com/sbonardt/base_theme_overrides to streamline your Drupal 7 theme
+Work in progress! Not ready for usage yet! 
 
 ---
  
