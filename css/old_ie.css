@@ -9,11 +9,14 @@
  * Author:      Sebastiaan Bonardt - @_sebbon
  */
 /**
- * Theme colors
- */
+* WEBSITE SETTINGS. Change these as desired:
+*/
+/* Theme colors */
+/* generic helper colours */
+/* Media Query Breakpoints */
 /**
- * Media Query Breakpoints
- */
+* Mixins. No touchy! Just usy!
+*/
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -499,29 +502,17 @@ input {
 /* line 40, ../scss/modules/_defaults.scss */
 .mobile-only {
   display: block;
-  display: none;
-  visibility: hidden;
 }
 
 /* line 48, ../scss/modules/_defaults.scss */
 .mobile-tabs-only {
   display: block;
-  display: none;
-  visibility: hidden;
-}
-
-/* line 56, ../scss/modules/_defaults.scss */
-.upto-tabs {
-  display: none;
-  visibility: hidden;
 }
 
 /* line 63, ../scss/modules/_defaults.scss */
 .tabs-up {
   display: none;
   visibility: hidden;
-  display: block;
-  visibility: visible;
 }
 
 /* line 72, ../scss/modules/_defaults.scss */
@@ -658,4 +649,162 @@ ul.secondary a.active {
   margin-top: 0;
   font-size: 14px;
   line-height: 21px;
+}
+
+/**
+ * File:        _layout.scss
+ * Description: _layout.scss contains all styles for page structure setup for makeitso
+ * Author:      Sebastiaan Bonardt - @_sebbon
+ */
+/**
+ * RWD breakpoints:
+ * from base.scss, use small-screens, medium-screens, large-screens, xlarge-screens, wide-screens
+ * use with "respond-to" mixin from base.scss as "@include respond-to(small-screens) {}"
+ * page setup: body direct descendants are the main wrappers containing direct 
+ * descendant with inner-wrap class set to center the content on the page
+ */
+/* line 15, ../scss/modules/_layout.scss */
+body {
+  margin: 0;
+  padding: 0 0.625em;
+  padding: 0 1.25em;
+}
+/* line 21, ../scss/modules/_layout.scss */
+body > header, body footer, body main, body [role="main"] {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+/* line 25, ../scss/modules/_layout.scss */
+body > header .inner-wrap, body footer .inner-wrap, body main .inner-wrap, body [role="main"] .inner-wrap {
+  margin: 0 auto;
+  max-width: 64em;
+}
+
+/**
+ * File:        _typography.scss
+ * Description: _typography.scss contains all text styles for makeitso 
+ * Author:      Sebastiaan Bonardt - @_sebbon
+ */
+/* line 17, ../scss/modules/_typography.scss */
+body {
+  font-size: 100%;
+  font-family: "Droid Sans", Arial, Sans-serif;
+  color: #222222;
+}
+
+/* line 23, ../scss/modules/_typography.scss */
+h1, h2, h3, h4, h5 {
+  color: #333333;
+}
+
+/* line 27, ../scss/modules/_typography.scss */
+h1 {
+  font-size: 48empx;
+  line-height: 57.6empx;
+}
+
+/* line 31, ../scss/modules/_typography.scss */
+h2 {
+  font-size: 36empx;
+  line-height: 43.2empx;
+}
+
+/* line 35, ../scss/modules/_typography.scss */
+h3 {
+  font-size: 28empx;
+  line-height: 33.6empx;
+}
+
+/* line 39, ../scss/modules/_typography.scss */
+h4 {
+  font-size: 18empx;
+  line-height: 21.6empx;
+}
+
+/* line 43, ../scss/modules/_typography.scss */
+h5 {
+  font-size: 48empx;
+  line-height: 57.6empx;
+}
+
+/* line 47, ../scss/modules/_typography.scss */
+blockquote {
+  font-size: 24px;
+  line-height: 28.8px;
+  padding: 1em;
+  background-color: #555555;
+}
+
+/* line 53, ../scss/modules/_typography.scss */
+ul {
+  padding: 0;
+  margin: 0;
+}
+/* line 56, ../scss/modules/_typography.scss */
+ul li {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 62, ../scss/modules/_typography.scss */
+a, a:link, a:visited {
+  color: #0000aa;
+}
+
+/* line 66, ../scss/modules/_typography.scss */
+a:hover, a:active, a:focus {
+  text-decoration: none;
+}
+
+/* line 71, ../scss/modules/_typography.scss */
+main p, main ul, main ol, main a, main pre, main cite, main blockquote, main table, footer p, footer ul, footer ol, footer a, footer pre, footer cite, footer blockquote, footer table, .highlighted p, .highlighted ul, .highlighted ol, .highlighted a, .highlighted pre, .highlighted cite, .highlighted blockquote, .highlighted table {
+  margin: 0 0 1.5em 0;
+  font-size: 15px;
+  line-height: 22.5px;
+}
+/* line 75, ../scss/modules/_typography.scss */
+main ol, footer ol, .highlighted ol {
+  counter-reset: li;
+  /* Initiate a counter */
+  margin-left: 0;
+  /* Remove the default left margin */
+  padding-left: 0;
+  /* Remove the default left padding */
+}
+/* line 79, ../scss/modules/_typography.scss */
+main ol > li, footer ol > li, .highlighted ol > li {
+  position: relative;
+  /* Create a positioning context */
+  list-style: none;
+  /* Disable the normal item numbering */
+  padding-left: 1.7em;
+  margin-bottom: 1em;
+}
+/* line 84, ../scss/modules/_typography.scss */
+main ol > li:before, footer ol > li:before, .highlighted ol > li:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 20px;
+  line-height: 30px;
+  line-height: 1;
+  width: 2em;
+  text-align: left;
+  content: counter(li);
+  /* Use the counter as content */
+  counter-increment: li;
+  /* Increment the counter by 1 */
+}
+/* line 97, ../scss/modules/_typography.scss */
+main li ol, main li ul, footer li ol, footer li ul, .highlighted li ol, .highlighted li ul {
+  margin-top: 0.5em;
+}
+/* line 100, ../scss/modules/_typography.scss */
+main ol ol li:last-child, footer ol ol li:last-child, .highlighted ol ol li:last-child {
+  margin-bottom: 0;
+}
+/* line 103, ../scss/modules/_typography.scss */
+main ul, footer ul, .highlighted ul {
+  margin-left: 1.2em;
 }

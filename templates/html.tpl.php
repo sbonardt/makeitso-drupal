@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="<?php print $language->language; ?>">
 <head>
-<title><?php print $head_title; ?></title>
+    <title><?php print $head_title; ?></title>
 <?php print $head; ?>
 <?php print $styles; ?>
 <!--[if lte IE 8]>

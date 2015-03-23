@@ -4,8 +4,104 @@
  * Author:      Sebastiaan Bonardt - @_sebbon
  */
 
- body {
+// @font-face { 
+//     font-family: "yourFont"; 
+//     src: url("../path/yourFont.eot"); 
+//     src: url("../path/yourFont.eot?#iefix") format("embedded-opentype"),
+//     url("../path/yourFont.woff") format("woff"),
+//     url("../path/yourFont.svg#yourFont") format("svg"); 
+//     font-weight: normal; 
+//     font-style: normal;
+// } 
+
+body {
     font-size:100%;
     font-family:$base-font-family;
     color:$baseFontColour;
- }
+}
+
+h1, h2, h3, h4, h5 {
+    color:$baseHeaderColour;
+}
+
+h1 {
+    @include header-font-size(3em);
+}
+
+h2 {
+    @include header-font-size(2.25em);
+}
+
+h3 {
+    @include header-font-size(1.75em);
+}
+
+h4 {
+    @include header-font-size(1.125em);
+}
+
+h5 {
+    @include header-font-size(3em);
+}
+
+blockquote {
+    @include header-font-size(1.5);
+    padding:1em;
+    background-color:$baseFirstThemeColour;
+}
+
+ul {
+    padding:0;
+    margin:0;
+    li {
+        padding:0;
+        margin:0;
+    }
+}
+
+a, a:link, a:visited {
+    color:$baseLinkColour;
+}
+
+a:hover, a:active, a:focus {
+    text-decoration:none;
+}
+
+main, footer, .highlighted {
+    p, ul, ol, a, pre, cite, blockquote, table {
+        margin:0 0 1.5em 0;
+        @include font-size(0.9375);
+    }
+    ol {
+        counter-reset:li; /* Initiate a counter */
+        margin-left:0; /* Remove the default left margin */
+        padding-left:0; /* Remove the default left padding */
+        > li {
+            position:relative; /* Create a positioning context */
+            list-style:none; /* Disable the normal item numbering */
+            padding-left:1.7em;
+            margin-bottom:1em;
+            &:before {
+                position:absolute;
+                top:0;
+                left:0;
+                @include font-size(1.25);
+                line-height:1;
+                width:2em;
+                text-align:left;
+                content:counter(li); /* Use the counter as content */
+                counter-increment:li; /* Increment the counter by 1 */
+            }
+        }
+    }
+    li ol, li ul {
+        margin-top:0.5em;
+    }
+    ol ol li:last-child {
+        margin-bottom:0;
+    }
+    ul {
+        margin-left:1.2em;
+    }
+}
+

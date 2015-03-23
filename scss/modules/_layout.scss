@@ -4,7 +4,25 @@
  * Author:      Sebastiaan Bonardt - @_sebbon
  */
 
+ /**
+  * RWD breakpoints:
+  * from base.scss, use small-screens, medium-screens, large-screens, xlarge-screens, wide-screens
+  * use with "respond-to" mixin from base.scss as "@include respond-to(small-screens) {}"
+  * page setup: body direct descendants are the main wrappers containing direct 
+  * descendant with inner-wrap class set to center the content on the page
+  */
+
  body {
     margin:0;
-    padding:0;
+    padding:0 0.625em;
+        > header, footer, main, [role="main"] {
+            width:100%;
+            display:block;
+            overflow:hidden;
+        .inner-wrap {
+            margin: 0 auto;
+            max-width: $site-max-width;
+        }
+    }
  }
+
