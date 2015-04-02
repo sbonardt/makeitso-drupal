@@ -2,7 +2,7 @@
 /**
  * Remove and add elements in head
  */
-function base_theme_overrides_html_head_alter(&$head_elements) {
+function makeitso_html_head_alter(&$head_elements) {
     // remove generator meta tag
     unset($head_elements['system_meta_generator']);  
 
@@ -17,7 +17,7 @@ function base_theme_overrides_html_head_alter(&$head_elements) {
     drupal_add_html_head($head_elements, 'viewporttag');  
     drupal_add_html_head($head_elements, 'x-ua-compat'); 
 
-    // do not allow IOS to alter telephone links automagically with this meta tag
+    // do not allow IOS/Android to alter telephone links automagically, by setting this meta tag
     $meta_ios_tel_links = array('#type' => 'html_tag','#tag' => 'meta','#attributes' => array('name' => 'format-detection','content' =>  'telephone=no'));
     drupal_add_html_head($meta_ios_tel_links, 'meta_ios_tel_links');
 }
@@ -25,7 +25,7 @@ function base_theme_overrides_html_head_alter(&$head_elements) {
 /**
  * Alter html
  */
-function theme_base_overrides_preprocess_html (&$variables) {
+function makeitso_preprocess_html (&$variables) {
     // add old_ie.css stylesheet for old Internet Explorer browsers support
     drupal_add_css(drupal_get_path('theme', 'theme_base_overrides') . '/css/old_ie.css', array('group' => CSS_THEME,'browsers' => array('IE' => 'lte IE 8','!IE' => FALSE),'preprocess' => FALSE));
     // add aside class to body if aside region is present. Used for theming purposes
@@ -35,8 +35,8 @@ function theme_base_overrides_preprocess_html (&$variables) {
 /**
 * Unset drupal base theming if needed for custom front-end theme
 */
-function theme_base_overrides_css_alter(&$css) { 
-    unset($css[drupal_get_path('module','system').'/system.base.css']);
+function makeitso_css_alter(&$css) { 
+    //unset($css[drupal_get_path('module','system').'/system.base.css']);
     unset($css[drupal_get_path('module','system').'/system.menus.css']);  
     unset($css[drupal_get_path('module','system').'/system.theme.css']); 
 }

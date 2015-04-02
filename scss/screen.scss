@@ -4,10 +4,13 @@
  * Author:      Sebastiaan Bonardt - @_sebbon
  */
 
+// sets $old-ie to false to not incorporaste old-ie styles
 $old-ie: false;
 
 @import "base/_base.scss";
 @import "base/_normalize.scss";
+@import "modules/_overrides.scss";
 @import "modules/_defaults.scss";
 @import "modules/_layout.scss";
 @import "modules/_typography.scss";
+@import "modules/_forms.scss";

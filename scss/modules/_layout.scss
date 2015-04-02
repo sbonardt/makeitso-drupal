@@ -1,28 +1,120 @@
 /**
- * File:        _layout.scss
- * Description: _layout.scss contains all styles for page structure setup for makeitso
- * Author:      Sebastiaan Bonardt - @_sebbon
- */
+* File:        _layout.scss
+* Description: _layout.scss contains all styles for page structure setup for makeitso
+* Author:      Sebastiaan Bonardt - @_sebbon
+*/
 
- /**
-  * RWD breakpoints:
-  * from base.scss, use small-screens, medium-screens, large-screens, xlarge-screens, wide-screens
-  * use with "respond-to" mixin from base.scss as "@include respond-to(small-screens) {}"
-  * page setup: body direct descendants are the main wrappers containing direct 
-  * descendant with inner-wrap class set to center the content on the page
-  */
+/**
+* About the Responsive Web Design breakpoints in this setup:
+* from base.scss, use small-screens, medium-screens, large-screens, xlarge-screens, wide-screens
+* Use them with "respond-to" mixin from base.scss as "@include respond-to(small-screens) {}"
+* 
+* page setup: body direct descendants are the main wrappers containing direct 
+* descendant with .inner-wrap class set to center the content on the page. Used in favor 
+* of a general top level wrap all wrapper for esthetics sake. 
+* The design pattern here is that some parts (e.g. header/footer) of the website need a full-width
+* background color, but the contents needs to be centered on the page
+*/
 
- body {
+html {
+    height:100%;
+}
+
+body {
+    min-height:100%;
     margin:0;
+    position:relative;
     padding:0 0.625em;
-        > header, footer, main, [role="main"] {
+    > header, footer, main, [role="main"] {
             width:100%;
             display:block;
             overflow:hidden;
-        .inner-wrap {
-            margin: 0 auto;
-            max-width: $site-max-width;
+    }
+    > header {
+        padding:1em 0;
+    }
+}
+
+.inner-wrap {
+    margin: 0 auto;
+    max-width: $site-max-width;
+}
+
+.skipcontent {
+    background-color: #fff;
+    left: -9999px;
+    padding: 0.3125em 1em;
+    position: absolute;
+    padding:0.5em 0.75em;
+    display:inline-block;  
+    z-index:2;  
+    &:focus {
+        left:1.25em;                     
+    }
+}
+
+.logo {
+    margin-bottom:1em;
+    @include respond-to(medium-screens) {
+        float:left;
+    }
+}
+
+.site-name {
+    display:block;
+}
+
+// search block styling
+.search {
+    @include respond-to(medium-screens) {
+        float:right;
+    }
+    .form-item {
+        float:left;
+        input {
+            border-right:0;
+            padding:0.25em 0 0.25em 0.25em;
         }
     }
- }
+    .form-actions {
+        float:left;
+    }
+    input, button {
+        height:30px;
+    }
+}
 
+nav {
+    ul {
+        background-color:$baseThirdThemeColour;
+        padding:1em 0;
+        overflow:hidden;
+        @extend .inner-wrap;
+    }
+    li {
+        list-style: none;
+        float:left;
+        a {
+            padding:0 0.5em; 
+        }    
+    }
+}
+
+.secondary-menu, .meta-menu {
+    clear:both;
+    display:block;
+    @include respond-to(medium-screens) {
+        float:right;
+    }
+    li {
+        list-style: none;
+        float:left;
+        a {
+            padding:0 0.5em; 
+        }    
+    }
+}
+
+.breadcrumb {
+    margin:1em 0;
+}

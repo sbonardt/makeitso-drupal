@@ -11,15 +11,19 @@ $base-font-family: "Droid Sans", Arial, Sans-serif;
 
 /* Theme colors */
 $baseFontColour:#222;
-$baseHeaderColour:#333;
+$baseFontHeaderColour:#333;
 $baseLinkColour:#00a;
-$baseFirstThemeColour:#555;//this colour is "Colour name 'e.g. Pink'" the main theme colour used in
-$baseSecondThemeColour:#999;//this colour is the secondary theme colour used in
-$baseThirdThemeColour:#bbb;//this colour is the secondary theme colour used in
+$baseFirstThemeColour:#999;//this colour is "Colour name 'e.g. Pink'" the main theme colour used in
+$baseSecondThemeColour:#bbb;//this colour is the secondary theme colour used in
+$baseThirdThemeColour:#ddd;//this colour is the secondary theme colour used in
 
 /* Generic helper colours */
 $errorColour: #e32118;
 $succesColour: #0a0;
+$black: #222;
+$grey: #ccc;
+$white: #fff;
+
 
 /* Media Query Breakpoints */
 $break-small: (481/16); //481px

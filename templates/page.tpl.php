@@ -89,31 +89,18 @@
 <header role="banner">
     <div class="inner-wrap">
         <a class="skipcontent" href="#content">Ga naar de inhoud</a>
-        <a class="logo" href="<?php print $front_page ?>"><img src="<?php print $logo; ?>" alt ="<?php print $site_name; ?>" /><span><?php print $site_name; ?></span></a>
+        <a class="logo" href="<?php print $front_page ?>"><img src="<?php print $logo; ?>" alt ="<?php print $site_name; ?>" /><span class="site-name"><?php print $site_name; ?></span></a>
 
         <?php 
             // print $searchblock from template.php    
-            print '<div class="search">' . $searchblock . '</div>'; 
+            print $searchblock; 
         ?>
-
-        <nav role="navigation">
-            <?php if ($main_menu): ?>
-            <?php
-            print theme('links__menu_main_menu', 
-            array(
-                'links' => $main_menu, 
-                'attributes' => array(  'class' => array('menu main-menu'))
-                )); 
-            ?>
-            <?php endif; ?> 
-        </nav>
-
         <?php if ($secondary_menu): ?>
         <?php 
             print theme('links__system_secondary_menu', 
             array(
                 'links' => $secondary_menu, 
-                'attributes' => array(  'class' => array('menu secondary-menu'))
+                'attributes' => array(  'class' => array('menu secondary-menu meta-menu'))
                 ));
         ?>
         <?php endif; ?> 
@@ -123,6 +110,18 @@
         <?php endif; ?>
     </div>
 </header>
+
+<nav role="navigation">
+    <?php if ($main_menu): ?>
+    <?php
+    print theme('links__menu_main_menu', 
+    array(
+        'links' => $main_menu, 
+        'attributes' => array(  'class' => array('menu main-menu'))
+        )); 
+    ?>
+    <?php endif; ?> 
+</nav>
 
 <main role="main">  
     <div class="inner-wrap">
