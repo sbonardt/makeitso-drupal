@@ -29,13 +29,13 @@ $white: #fff;
 $break-small: (481/16); //481px
 $break-medium:(600/16); //768px
 $break-large:(768/16); //768px
-$break-xlarge:(1024/16); //1024px
+$break-xlarge:(960/16); //1024px
 $break-wide: (1200/16); //1200px
 
-$site-max-width:64em;
+$site-max-width:60em;
 
 /* 
- * Mixin: Breakpoints handling RWD including Old-IE (lte ie8)
+ * Mixin: Breakpoints handling RWD including Old-IE (lte IE98)
 */
 $old-ie: false !default;
 

@@ -29,7 +29,7 @@ body {
     min-height:100%;
     margin:0;
     position:relative;
-    padding:0 0.625em;
+    padding:0;
     > header, footer, main, [role="main"] {
             width:100%;
             display:block;
@@ -38,10 +38,18 @@ body {
     > header {
         padding:1em 0;
     }
+    > main,[role="main"] {
+        margin:1em 0 2em;  
+    }
+    > footer {
+        min-height:5em;
+        background-color:$baseSecondThemeColour;
+    }
 }
 
 .inner-wrap {
     margin: 0 auto;
+    padding:0 0.625em;
     max-width: $site-max-width;
 }
 
@@ -90,9 +98,9 @@ body {
 }
 
 nav {
+    background-color:$baseThirdThemeColour;
     ul {
-        background-color:$baseThirdThemeColour;
-        padding:1em 0;
+        padding:1em 0.625em;
         overflow:hidden;
         @extend .inner-wrap;
     }
@@ -108,6 +116,7 @@ nav {
 .secondary-menu, .meta-menu {
     clear:both;
     display:block;
+    overflow: hidden;
     @include respond-to(medium-screens) {
         float:right;
     }
@@ -122,4 +131,8 @@ nav {
 
 .breadcrumb {
     margin:1em 0;
+}
+
+.comments {
+
 }

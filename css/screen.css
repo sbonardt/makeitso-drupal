@@ -15,7 +15,7 @@
 /* Generic helper colours */
 /* Media Query Breakpoints */
 /* 
- * Mixin: Breakpoints handling RWD including Old-IE (lte ie8)
+ * Mixin: Breakpoints handling RWD including Old-IE (lte IE98)
 */
 /* 
  * Mixin: Old IE. Only print this for Old-ie stylesheet
@@ -792,7 +792,7 @@ input {
 .up-to-xlarge-screens {
   display: block;
 }
-@media only screen and (min-width: 64em) {
+@media only screen and (min-width: 60em) {
   /* line 85, ../scss/modules/_defaults.scss */
   .up-to-xlarge-screens {
     display: none;
@@ -804,7 +804,7 @@ input {
 .xlarge-screens-up {
   display: none;
 }
-@media only screen and (min-width: 64em) {
+@media only screen and (min-width: 60em) {
   /* line 93, ../scss/modules/_defaults.scss */
   .xlarge-screens-up {
     display: block;
@@ -857,39 +857,54 @@ blockquote {
 * page setup: body direct descendants are the main wrappers containing direct 
 * descendant with .inner-wrap class set to center the content on the page. Used in favor 
 * of a general top level wrap all wrapper for esthetics sake. 
+*
 * The design pattern here is that some parts (e.g. header/footer) of the website need a full-width
 * background color, but the contents needs to be centered on the page
+*
+* ! If no full width background-colors are in the design you can remove the inner-wrap div's and
+* set the $site-max-width on the body with margin:0 auto;
+*
 */
-/* line 19, ../scss/modules/_layout.scss */
+/* line 24, ../scss/modules/_layout.scss */
 html {
   height: 100%;
 }
 
-/* line 23, ../scss/modules/_layout.scss */
+/* line 28, ../scss/modules/_layout.scss */
 body {
   min-height: 100%;
   margin: 0;
   position: relative;
-  padding: 0 0.625em;
+  padding: 0;
 }
-/* line 28, ../scss/modules/_layout.scss */
+/* line 33, ../scss/modules/_layout.scss */
 body > header, body footer, body main, body [role="main"] {
   width: 100%;
   display: block;
   overflow: hidden;
 }
-/* line 33, ../scss/modules/_layout.scss */
+/* line 38, ../scss/modules/_layout.scss */
 body > header {
   padding: 1em 0;
 }
-
-/* line 38, ../scss/modules/_layout.scss */
-.inner-wrap, nav ul {
-  margin: 0 auto;
-  max-width: 64em;
+/* line 41, ../scss/modules/_layout.scss */
+body > main, body [role="main"] {
+  margin: 1em 0 2em;
+}
+/* line 44, ../scss/modules/_layout.scss */
+body > footer {
+  min-height: 5em;
+  background-color: #bbbbbb;
 }
 
-/* line 43, ../scss/modules/_layout.scss */
+/* line 50, ../scss/modules/_layout.scss */
+.inner-wrap, nav ul {
+  margin: 0 auto;
+  padding: 0 0.625em;
+  max-width: 60em;
+}
+
+/* line 56, ../scss/modules/_layout.scss */
 .skipcontent {
   background-color: #fff;
   left: -9999px;
@@ -899,89 +914,93 @@ body > header {
   display: inline-block;
   z-index: 2;
 }
-/* line 51, ../scss/modules/_layout.scss */
+/* line 64, ../scss/modules/_layout.scss */
 .skipcontent:focus {
   left: 1.25em;
 }
 
-/* line 56, ../scss/modules/_layout.scss */
+/* line 69, ../scss/modules/_layout.scss */
 .logo {
   margin-bottom: 1em;
 }
 @media only screen and (min-width: 37.5em) {
-  /* line 56, ../scss/modules/_layout.scss */
+  /* line 69, ../scss/modules/_layout.scss */
   .logo {
     float: left;
   }
 }
 
-/* line 63, ../scss/modules/_layout.scss */
+/* line 76, ../scss/modules/_layout.scss */
 .site-name {
   display: block;
 }
 
 @media only screen and (min-width: 37.5em) {
-  /* line 68, ../scss/modules/_layout.scss */
+  /* line 81, ../scss/modules/_layout.scss */
   .search {
     float: right;
   }
 }
-/* line 72, ../scss/modules/_layout.scss */
+/* line 85, ../scss/modules/_layout.scss */
 .search .form-item {
   float: left;
 }
-/* line 74, ../scss/modules/_layout.scss */
+/* line 87, ../scss/modules/_layout.scss */
 .search .form-item input {
   border-right: 0;
   padding: 0.25em 0 0.25em 0.25em;
 }
-/* line 79, ../scss/modules/_layout.scss */
+/* line 92, ../scss/modules/_layout.scss */
 .search .form-actions {
   float: left;
 }
-/* line 82, ../scss/modules/_layout.scss */
+/* line 95, ../scss/modules/_layout.scss */
 .search input, .search button {
   height: 30px;
 }
 
-/* line 88, ../scss/modules/_layout.scss */
-nav ul {
+/* line 100, ../scss/modules/_layout.scss */
+nav {
   background-color: #dddddd;
-  padding: 1em 0;
+}
+/* line 102, ../scss/modules/_layout.scss */
+nav ul {
+  padding: 1em 0.625em;
   overflow: hidden;
 }
-/* line 94, ../scss/modules/_layout.scss */
+/* line 107, ../scss/modules/_layout.scss */
 nav li {
   list-style: none;
   float: left;
 }
-/* line 97, ../scss/modules/_layout.scss */
+/* line 110, ../scss/modules/_layout.scss */
 nav li a {
   padding: 0 0.5em;
 }
 
-/* line 103, ../scss/modules/_layout.scss */
+/* line 116, ../scss/modules/_layout.scss */
 .secondary-menu, .meta-menu {
   clear: both;
   display: block;
+  overflow: hidden;
 }
 @media only screen and (min-width: 37.5em) {
-  /* line 103, ../scss/modules/_layout.scss */
+  /* line 116, ../scss/modules/_layout.scss */
   .secondary-menu, .meta-menu {
     float: right;
   }
 }
-/* line 109, ../scss/modules/_layout.scss */
+/* line 123, ../scss/modules/_layout.scss */
 .secondary-menu li, .meta-menu li {
   list-style: none;
   float: left;
 }
-/* line 112, ../scss/modules/_layout.scss */
+/* line 126, ../scss/modules/_layout.scss */
 .secondary-menu li a, .meta-menu li a {
   padding: 0 0.5em;
 }
 
-/* line 118, ../scss/modules/_layout.scss */
+/* line 132, ../scss/modules/_layout.scss */
 .breadcrumb {
   margin: 1em 0;
 }
