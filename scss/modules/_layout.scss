@@ -12,8 +12,13 @@
 * page setup: body direct descendants are the main wrappers containing direct 
 * descendant with .inner-wrap class set to center the content on the page. Used in favor 
 * of a general top level wrap all wrapper for esthetics sake. 
+*
 * The design pattern here is that some parts (e.g. header/footer) of the website need a full-width
 * background color, but the contents needs to be centered on the page
+*
+* ! If no full width background-colors are in the design you can remove the inner-wrap div's and
+* set the $site-max-width on the body with margin:0 auto;
+*
 */
 
 html {

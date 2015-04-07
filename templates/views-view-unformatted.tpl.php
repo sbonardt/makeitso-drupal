@@ -5,7 +5,7 @@
  *
  * IMPORTANT THEMING INFORMATION!:
  * views-view-unformatted.tpl override. Removes wrapping div per views result row. 
- * If class is user specified in views display row style adds wrapping DIV with class to each row
+ * If class is user specified in views display row style, adds wrapping DIV with class to each row
  * If not, there is no wrapping DIV generated, as opposed to default template
  *
  *
