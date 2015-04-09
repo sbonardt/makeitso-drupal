@@ -40,3 +40,101 @@ function makeitso_css_alter(&$css) {
     unset($css[drupal_get_path('module','system').'/system.menus.css']);  
     unset($css[drupal_get_path('module','system').'/system.theme.css']); 
 }
+
+
+/**
+ * Remove wrapping div excess from drupal fields-module fields
+ */
+function makeitso_field(&$variables) {
+$output = '';
+  // Render the label, if it's not hidden.
+  if (!$variables ['label_hidden']) {
+    $output .= '<div class="field-label"' . $variables ['title_attributes'] . '>' . $variables ['label'] . ':&nbsp;</div>';
+  }
+  foreach ($variables ['items'] as $delta => $item) {
+    $output .=  drupal_render($item);
+  }
+  return $output;
+}
+
+/**
+ * Return a themed breadcrumb trail. Simple and conscise, links in a div
+ */
+function makeitso_breadcrumb(&$variables) {
+    $breadcrumb = $variables['breadcrumb'];
+    if (!empty($breadcrumb)) {
+        $output = '<div class="breadcrumb">' . implode('', $breadcrumb) . '</div>';
+        return $output;
+    }
+}
+
+/**
+ * Remove width and height fro the equasion. For responsiveness'ess
+ */
+function makeitso_image(&$variables) {
+    $attributes = $variables['attributes'];
+    $attributes['src'] = file_create_url($variables['path']);
+    // remove attributes height and width
+    // foreach (array('width', 'height', 'alt', 'title') as $key) {
+    foreach (array('alt', 'title') as $key) {
+        if (isset($variables[$key])) {
+            $attributes[$key] = $variables[$key];
+        }
+    }
+    return '<img' . drupal_attributes($attributes) . ' />';
+}
+
+/**
+ * Remove wrapping div around item-list
+ */
+function makeitso_item_list(&$variables) {
+    $items = $variables['items'];
+    $title = $variables['title'];
+    $type = $variables['type'];
+    $attributes = $variables['attributes'];
+    $output = '';
+    if (isset($title) && $title !== '') {
+        $output .= '<h3>' . $title . '</h3>';
+    }
+    if (!empty($items)) {
+        $output .= "<$type" . drupal_attributes($attributes) . '>';
+        $num_items = count($items);
+        $i = 0;
+        foreach ($items as $item) {
+            $attributes = array();
+            $children = array();
+            $data = '';
+            $i++;
+            if (is_array($item)) {
+                foreach ($item as $key => $value) {
+                    if ($key == 'data') {
+                        $data = $value;
+                    }
+                    elseif ($key == 'children') {
+                        $children = $value;
+                    }
+                    else {
+                        $attributes[$key] = $value;
+                    }
+                }
+            }
+            else {
+                $data = $item;
+            }
+            if (count($children) > 0) {
+            // Render nested list.
+                $data .= theme_item_list(array('items' => $children, 'title' => NULL, 'type' => $type, 'attributes' => $attributes));
+            }
+            if ($i == 1) {
+                $attributes['class'][] = 'first';
+            }
+            if ($i == $num_items) {
+                $attributes['class'][] = 'last';
+            }
+            $output .= '<li' . drupal_attributes($attributes) . '>' . $data . "</li>\n";
+        }
+        $output .= "</$type>";
+    }
+    $output .= '';
+    return $output;
+}
