@@ -5,7 +5,6 @@
 function makeitso_html_head_alter(&$head_elements) {
     // remove generator meta tag
     unset($head_elements['system_meta_generator']);  
-
     // add following meta tags
     $head_elements['viewporttag'] = array('#type' => 'html_tag','#tag' => 'meta','#attributes' => array('name' => 'viewport','content' => 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=10.0',),'#weight' => 0,);    
     $head_elements['x-ua-compat'] = array('#type' => 'html_tag','#tag' => 'meta','#attributes' => array('http_equiv' => 'X-UA-Compatible','content' => 'IE=edge,chrome=1',),'#weight' => 0,);  
@@ -23,11 +22,11 @@ function makeitso_html_head_alter(&$head_elements) {
 }
 
 /**
- * Alter html
+ * Alter html(.tpl.php)
  */
 function makeitso_preprocess_html (&$variables) {
     // add old_ie.css stylesheet for old Internet Explorer browsers support
-    drupal_add_css(drupal_get_path('theme', 'theme_base_overrides') . '/css/old_ie.css', array('group' => CSS_THEME,'browsers' => array('IE' => 'lte IE 8','!IE' => FALSE),'preprocess' => FALSE));
+    drupal_add_css(drupal_get_path('theme', 'makeitso') . '/css/old_ie.css', array('group' => CSS_THEME,'browsers' => array('IE' => 'lte IE 8','!IE' => FALSE),'preprocess' => FALSE));
     // add aside class to body if aside region is present. Used for theming purposes
     if (!empty($variables['page']['aside'])) {$variables['classes_array'][] = 'aside';}
 }
@@ -41,6 +40,59 @@ function makeitso_css_alter(&$css) {
     unset($css[drupal_get_path('module','system').'/system.theme.css']); 
 }
 
+/**
+ * Override or insert variables into the page template.
+ */
+function makeitso_preprocess_page(&$variables) {
+// page template suggestions base on node type: page--type--interview, page--type--cursus, etc.
+    if (!empty($variables['node'])) {
+        $variables['theme_hook_suggestions'][] = 'page__type__' . $variables['node']->type;
+    }
+
+// move secondary tabs into a separate variable.
+    $variables['tabs2'] = array(
+        '#theme' => 'menu_local_tasks',
+        '#secondary' => $variables['tabs']['#secondary'],
+        );
+    unset($variables['tabs']['#secondary']);
+
+// template suggestions to target specific taxonomy voc. pages based on voc.id page--vocabulary--id
+    if (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
+        $tid = arg(2);
+        $vid = db_query("SELECT vid FROM {taxonomy_term_data} WHERE tid = :tid", array(':tid' => $tid))->fetchField();
+        $variables['theme_hook_suggestions'][] = 'page__vocabulary__' . $vid;
+    }   
+
+// put the search block form in a separate variable '$searchblock' for use in page.tpl
+    $customsearchblock = module_invoke('search','block_view','search'); 
+    $customsearchrendered_block = render($customsearchblock);
+    $variables['searchblock'] = $customsearchrendered_block;
+}
+
+/**
+ * Override or insert variables into the node template.
+ */
+function makeitso_preprocess_node(&$variables) {
+// add node-full class to node
+    if ($variables['elements']['#view_mode'] == 'full') {
+        $variables['classes_array'][] = 'main-content node-full';
+    }
+// add node-teaser class to node if teaser
+    if ($variables['elements']['#view_mode'] == 'teaser') {
+        $variables['classes_array'][] = 'node-teaser';
+    }
+}
+
+/**
+ * Override or insert variables into the block template.
+ */
+function makeitso_preprocess_block(&$variables) {
+    $block = $variables['block'];
+// add a simple edit link to blocks for priviliged users
+    if (user_access('administer blocks') && $block->module == "block"){
+        $variables['content'] = l(t('edit'), 'admin/structure/block/manage/block/' . $block->delta, array('attributes'=>array('class'=>'block_edit', 'title'=>'edit '.$block->subject.' block'), 'query'=>drupal_get_destination())). $variables['content'];
+    }
+}
 
 /**
  * Remove wrapping div excess from drupal fields-module fields

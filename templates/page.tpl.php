@@ -137,8 +137,8 @@
         <?php endif; ?>
 
         <a id="content" tabindex="0"></a>
+        <?php if (!isset($node)): ?>
         <div class="main-content">
-        <?php if (!isset($node)): ?> 
             <?php if ($title): ?>
             <h1 class="title" id="page-title"><?php print $title; ?></h1>
             <?php endif; ?>
@@ -147,7 +147,9 @@
         <?php print render($page['content_top']); ?>
         <?php print render($page['content']); ?>
         <?php print render($page['content_bottom']); ?>
+        <?php if (!isset($node)): ?>
         </div>
+        <?php endif; ?>
 
         <?php if ($page['aside']): ?>
         <aside>

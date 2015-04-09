@@ -7,6 +7,7 @@ engine = phptemplate
 stylesheets[all][] = css/screen.css
 
 ; Javascript ===============================================================
+scripts[] = js/vendor/viewportSize-min.js
 scripts[] = js/custom.js
 
 regions[header] = Header
